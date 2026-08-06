@@ -17,36 +17,47 @@ function saveNotes() {
 }
 
 function loadNotes() {
-  const storedNotes = localStorage.getItem("notes");
 
-  if (storedNotes) {
-    notes = JSON.parse(storedNotes);
-  } else {
-    notes = [
-      {
-        id: 1,
-        title: "Project Meeting",
-        description: "Discuss the new frontend requirements and project timeline.",
-        priority: "high",
-        date: "4 Aug 2025, 10:30 AM"
-      },
-      {
-        id: 2,
-        title: "Shopping List",
-        description: "Buy groceries: Milk, Bread, Eggs, Fruits.",
-        priority: "low",
-        date: "3 Aug 2025, 6:45 PM"
-      },
-      {
-        id: 3,
-        title: "Learning Goals",
-        description: "Learn React in depth and build real-world projects.",
-        priority: "medium",
-        date: "2 Aug 2025, 9:15 AM"
-      }
-    ];
-    saveNotes();
-  }
+  showLoading();
+
+  setTimeout(() => {
+
+    const storedNotes = localStorage.getItem("notes");
+
+    if (storedNotes) {
+      notes = JSON.parse(storedNotes);
+    } else {
+      notes = [
+        {
+          id: 1,
+          title: "Project Meeting",
+          description: "Discuss the new frontend requirements and project timeline.",
+          priority: "high",
+          date: "4 Aug 2025, 10:30 AM"
+        },
+        {
+          id: 2,
+          title: "Shopping List",
+          description: "Buy groceries: Milk, Bread, Eggs, Fruits.",
+          priority: "low",
+          date: "3 Aug 2025, 6:45 PM"
+        },
+        {
+          id: 3,
+          title: "Learning Goals",
+          description: "Learn React in depth and build real-world projects.",
+          priority: "medium",
+          date: "2 Aug 2025, 9:15 AM"
+        }
+      ];
+
+      saveNotes();
+    }
+
+    renderNotes();
+    hideLoading();
+  }, 1000);
+
 }
 
 function renderNotes() {
@@ -124,10 +135,20 @@ saveBtn.addEventListener("click", () => {
   const desc = document.getElementById("addDesc").value.trim();
   const priority = document.getElementById("addPriority").value;
 
+  const addError = document.getElementById("addError");
+
   if (!title || !desc || !priority) {
-    alert("Please fill in all fields");
+    addError.textContent = "⚠ Please fill in all required fields.";
+    addError.style.display = "block";
+
+    setTimeout(() => {
+      addError.style.display = "none";
+    }, 3000);
+
     return;
   }
+
+  addError.style.display = "none";
 
   const dateTime = new Date().toLocaleString("en-GB", {
     day: "numeric",
@@ -268,7 +289,7 @@ menuItems.forEach(item => {
 const loading = document.getElementById("loading");
 
 function showLoading() {
-  loading.style.display = "block";
+  loading.style.display = "flex";
 }
 
 function hideLoading() {
@@ -276,4 +297,3 @@ function hideLoading() {
 }
 
 loadNotes();
-renderNotes();

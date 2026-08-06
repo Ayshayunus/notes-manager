@@ -55,6 +55,7 @@
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
+        <p id="addError" class="error-message"></p>
         <div class="modal-buttons">
           <button class="close-btn">Cancel</button>
           <button id="saveBtn">Save</button>
@@ -89,7 +90,11 @@
       </div>
     </div>
   </div>
-  <!-- <div id="loading" class="loading">Loading notes...</div> -->
+  <div id="loading" class="loading">
+    <div class="loader"></div>
+    <p>Loading notes...</p>
+  </div>
   <script src="script.js"></script>
 </body>
+
 </html>
