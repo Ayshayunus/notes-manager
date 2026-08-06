@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+  <button class="menu-btn" id="menuBtn">☰</button>
+  <div class="sidebar">
+    <div class="logo"><img src="images/logo.png">Notes Manager</div>
+    <div class="line"></div>
+    <div class="menu">
+      <div class="menu-item active" data-filter="all"><img src="images/notes.png">All Notes</div>
+      <div class="menu-item" data-filter="high"><img src="images/flag.png">High Priority</div>
+      <div class="menu-item" data-filter="medium"><img src="images/flag.png">Medium Priority</div>
+      <div class="menu-item" data-filter="low"><img src="images/flag.png">Low Priority</div>
+    </div>
+    <div class="quote">
+      "Notes are the building blocks of thoughts."<br>
+      – Keep capturing ideas
+    </div>
+
+    <div class="line"></div>
+  </div>
+
+  <div class="main">
+    <div class="top-bar">
+      <div>
+        <h1>All Notes</h1>
+        <p>Manage your notes efficiently</p>
+      </div>
+      <button class="add-btn"><img src="images/plus.png">Add Note</button>
+    </div>
+
+    <input class="search-bar" type="text" placeholder="Search notes...">
+
+    <div class="notes-grid"></div>
+
+    <div class="overlay" id="overlay">
+      <div class="modal" id="addModal">
+        <h2>Add New Note</h2>
+        <label>Title</label>
+        <input type="text" id="addTitle" placeholder="Enter title">
+        <label>Description</label>
+        <textarea id="addDesc" placeholder="Enter description"></textarea>
+        <label>Priority</label>
+        <select id="addPriority">
+          <option value="">Select priority</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div class="modal-buttons">
+          <button class="close-btn">Cancel</button>
+          <button id="saveBtn">Save</button>
+        </div>
+      </div>
+
+      <div class="modal" id="editModal">
+        <h2>Edit Note</h2>
+        <label>Title</label>
+        <input type="text" id="editTitle">
+        <label>Description</label>
+        <textarea id="editDesc"></textarea>
+        <label>Priority</label>
+        <select id="editPriority">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div class="modal-buttons">
+          <button class="close-btn">Cancel</button>
+          <button id="updateBtn">Update</button>
+        </div>
+      </div>
+
+      <div class="modal" id="deleteModal">
+        <h2>Delete Note</h2>
+        <p>Are you sure you want to delete this note?</p>
+        <div class="modal-buttons">
+          <button class="close-btn">Cancel</button>
+          <button id="confirmDeleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="loading" class="loading">Loading notes...</div> -->
+  <script src="script.js"></script>
+</body>
+</html>
